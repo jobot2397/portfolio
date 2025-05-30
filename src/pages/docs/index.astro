@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../components/Base.astro";
+
+const posts = (await getCollection("docs")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// TODO figure out how I want to visualize these blog posts
+---
+
+<!doctype html>
+<html lang="en" class="hide-scrollbar">
+    <head>
+        <Base />
+    </head>
+    <body class="bg-gray-800">
+        <main>
+            <section>
+                <ul>
+                    {
+                        posts.map((post) => (
+                            <li>
+                                <a href={`/docs/${post.id}/`}>
+                                    <h4 class="title">{post.data.title}</h4>
+                                    <p class="date" />
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>

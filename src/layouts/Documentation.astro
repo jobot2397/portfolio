@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content";
+import "../styles/global.css";
+type Props = CollectionEntry<"docs">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<html lang="en">
+    <body>
+        <main>
+            <article>
+                <div class="p-4">
+                    <div class="title">
+                        <div class="date"></div>
+                        <h1>{title}</h1>
+                        <hr />
+                    </div>
+                    <slot />
+                </div>
+            </article>
+        </main>
+    </body>
+</html>
