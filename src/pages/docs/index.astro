@@ -17,57 +17,95 @@ const posts = (await getCollection("docs")).sort(
         class="bg-neutral-900 h-screen w-screen
     absolute -z-10 inset-0
     bg-[radial-gradient(circle,#73737350_1px,transparent_1px)]
-    bg-[size:10px_10px]"
+    bg-[size:20px_20px] flex flex-row"
     >
-        <div class="flex flex-row gap-5 h-full max-w-5xl mx-auto">
-            <!-- Desktop sidebar -->
-            <div
-                class="hidden md:block w-80
+        <!-- Desktop sidebar -->
+        <div
+            class="hidden md:block flex-shrink-0 w-80 ml-5
                 bg-neutral-900
                 my-5 rounded-2xl
                 border-dashed border-1 border-neutral-700"
-            >
-                <div class="w-full h-fit p-5">
-                    <div class="text-3xl font-bold text-zinc-100">Title</div>
-                </div>
-
-                <form class="px-5 text-zinc-50 relative">
-                    <label class="ml-5 absolute -top-2 left-5 text-[10px]"
-                        >Search</label
-                    >
-                    <input
-                        class="w-full h-fit border-dashed border-1 border-neutral-700 rounded-full text-sm px-5 py-4 bg-black"
-                        type="text"
-                        placeholder="Enter text to search"
-                    />
-                    <div
-                        class="flex items-center gap-2 absolute top-0 right-0 h-full mr-5"
-                    >
-                        <button
-                            type="submit"
-                            class="relative h-full aspect-square rounded-full bg-orange-500 text-gray-100 font-bold border border-dashed border-gray-100 cursor-pointer"
-                            title="Submit search"
-                        >
-                            <span
-                                class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-                                ><Icon name="search" />
-                            </span>
-                        </button>
-                    </div>
-                </form>
+        >
+            <!-- Title -->
+            <div class="w-full h-fit px-5 pt-5 pb-10">
+                <div class="text-3xl font-bold text-zinc-100">Title</div>
             </div>
 
-            <div class="flex flex-col h-fit w-full my-5">
-                <!-- Content -->
-                <div class="h-full bg-green-500">Content</div>
-
-                <!-- Mobile sidebar -->
-                <div
-                    class="block md:hidden w-full h-8 fixed bottom-0 bg-red-500"
+            <!-- Search -->
+            <!-- TODO add cmd k functionality -->
+            <form class="px-5 text-zinc-50 relative">
+                <label class="ml-5 absolute -top-2 left-5 text-[10px]"
+                    >Search</label
                 >
-                    Mobile Sidebar
+                <input
+                    class="w-full h-fit border-dashed border-1 border-neutral-700 rounded-full text-sm px-5 py-4 bg-black
+                    focus:outline-none focus:border-orange-500"
+                    type="text"
+                    placeholder="Enter text to search"
+                />
+                <div
+                    class="flex items-center gap-2 absolute top-0 right-0 h-full mr-5"
+                >
+                    <button
+                        type="submit"
+                        class="relative h-full text-2xl aspect-square rounded-full bg-orange-500 text-gray-100 font-bold border border-dashed border-gray-100 cursor-pointer"
+                        title="Submit search"
+                    >
+                        <span
+                            class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                            ><Icon name="search" />
+                        </span>
+                    </button>
                 </div>
+            </form>
+
+            <!-- Links -->
+            <div class="flex flex-row px-5 py-3 gap-5 text-orange-500">
+                <a
+                    href="https://github.com/jobot2397/portfolio"
+                    class="flex items-baseline gap-1 border border-transparent hover:bg-neutral-800 hover:border-neutral-700 hover:border-dashed p-2 rounded-full"
+                >
+                    Github<Icon name="link" class="self-center" />
+                </a>
+                <a
+                    href="https://github.com/jobot2397/portfolio"
+                    class="flex items-baseline gap-1 border border-transparent hover:bg-neutral-800 hover:border-neutral-700 hover:border-dashed p-2 rounded-full"
+                    >Home<Icon name="link" class="self-center" /></a
+                >
             </div>
+
+            <!-- Blogs -->
+            <a
+                class="py-5 text-zinc-50 border-dashed border-1 border-neutral-700 border-x-0 flex items-center hover:bg-neutral-800"
+                href="https://github.com/jobot2397/portfolio"
+            >
+                <div class="border-dashed border-1 border-neutral-700 w-4">
+                </div>
+                <div class="bg-orange-500 w-2 aspect-square rounded-full"></div>
+                <span class="pl-2">Blog Posts</span>
+            </a>
+
+            <!-- Tags -->
+            <a
+                class="py-5 text-zinc-50 border-dashed border-1 border-neutral-700 border-x-0 flex items-center hover:bg-neutral-800"
+                href="https://github.com/jobot2397/portfolio"
+            >
+                <div class="border-dashed border-1 border-neutral-700 w-4">
+                </div>
+                <div class="bg-orange-500 w-2 aspect-square rounded-full"></div>
+                <span class="pl-2">Tag Lists</span>
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div class="h-full w-full max-w-2xl mx-auto">
+            <div class="flex flex-col h-full w-full p-5">
+                <div class="flex-1 bg-green-500">Content</div>
+            </div>
+        </div>
+        <!-- Mobile sidebar -->
+        <div class="block md:hidden w-full h-8 fixed bottom-0 bg-red-500">
+            Mobile Sidebar
         </div>
     </body>
 </html>
