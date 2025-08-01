@@ -3,11 +3,11 @@ import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
-import mdx from "@astrojs/mdx";
-
 import sitemap from "@astrojs/sitemap";
 
 import icon from "astro-icon";
+
+import markdoc from "@astrojs/markdoc";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,5 +15,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: "https://example.com",
-  integrations: [mdx(), sitemap(), icon()],
+  integrations: [sitemap(), icon(), markdoc()],
 });
