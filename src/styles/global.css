@@ -1,5 +1,2 @@
 @import "tailwindcss";
-
-@utility sb-text-title {
-    text: 
-}
+@plugin '@tailwindcss/typography';
