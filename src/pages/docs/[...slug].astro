@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import Base from "../../components/Base.astro";
 import { Icon } from "astro-icon/components";
 import Prose from "../../components/Prose.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 import { render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -26,7 +27,7 @@ const { Content } = await render(post);
     <body
         class="bg-neutral-900 min-h-screen
         bg-[radial-gradient(circle,#73737350_1px,transparent_1px)]
-        bg-[size:20px_20px]"
+        bg-[size:20px_20px] scroll-smooth"
     >
         <div class="flex flex-row min-h-screen">
             <!-- Desktop sidebar -->
@@ -127,7 +128,7 @@ const { Content } = await render(post);
             <div class="flex-1 max-w-2xl mx-auto">
                 <div class="flex flex-col w-full p-5 min-h-screen">
                     <!-- Frontmatter -->
-                    <div>
+                    <div class="pb-5">
                         <div class="flex flex-row h-fit w-full justify-between">
                             <!-- Path -->
                             <div class="flex gap-2 items-center">
@@ -172,19 +173,109 @@ const { Content } = await render(post);
                             </div>
                         </div>
                     </div>
-                    <!-- Markdown content -->
-                    <div class="flex-1">
-                        <Prose>
-                            <Content />
-                        </Prose>
+
+                    <!-- Frontmatter -->
+                    <div>
+                        <!-- Title -->
+                        <div class="text-6xl text-zinc-50 font-bold">
+                            {post.data.title}
+                        </div>
+                        <div
+                            class="border-dashed border-neutral-700 border-l border-b"
+                        >
+                            <!-- Description -->
+                            <div class="text-2xl text-zinc-50 p-5">
+                                {post.data.description}
+                            </div>
+
+                            <!-- Last Modified Date -->
+                            <div
+                                class="flex flex-row w-full text-zinc-50 text-sm items-center"
+                            >
+                                <div
+                                    class="border-dashed border-neutral-700 border-t w-5"
+                                >
+                                </div>
+                                <span
+                                    class="flex flex-row gap-2 items-center p-2"
+                                >
+                                    <Icon name="calendar" />
+
+                                    Published on
+                                    {
+                                        new Date(
+                                            post.data.updatedDate,
+                                        ).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
+                                        })
+                                    }
+                                </span>
+                                <div
+                                    class="border-dashed border-neutral-700 border-t flex-1"
+                                >
+                                </div>
+                                <div class="flex flex-row items-center gap-2">
+                                    <div
+                                        class="relative h-10 w-10 text-lg aspect-square rounded-full bg-black text-zinc-50 font-bold border border-dashed border-neutral-700 cursor-pointer"
+                                    >
+                                        <span
+                                            class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                                        >
+                                            <Icon name="person" />
+                                        </span>
+                                    </div>
+                                    <span>
+                                        {post.data.author}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Table of contents -->
+                            <div
+                                class="flex flex-row w-full text-zinc-50 text-sm items-center"
+                            >
+                                <div
+                                    class="border-dashed border-neutral-700 border-t w-5"
+                                >
+                                </div>
+                                <span
+                                    class="flex flex-row gap-2 items-center p-2 cursor-pointer"
+                                >
+                                    <!-- TODO make this toggleable -->
+                                    <Icon
+                                        class="text-orange-500"
+                                        name="minus"
+                                    />
+
+                                    Table of Contents
+
+                                    <div class="grid">
+                                        <TableOfContents />
+                                    </div>
+                                </span>
+                                <div
+                                    class="border-dashed border-neutral-700 border-t flex-1"
+                                >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Markdown content -->
+                        <div class="flex-1">
+                            <Prose>
+                                <Content />
+                            </Prose>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Mobile sidebar -->
-        <div class="block md:hidden w-full h-8 fixed bottom-0 bg-red-500">
-            Mobile Sidebar
+            <!-- Mobile sidebar -->
+            <div class="block md:hidden w-full h-8 fixed bottom-0 bg-red-500">
+                Mobile Sidebar
+            </div>
         </div>
     </body>
 </html>

@@ -20,12 +20,12 @@ const docs = defineCollection({
   loader: glob({ base: "./src/content/docs", pattern: "**/*.{md,mdoc}" }),
   // Type-check frontmatter using a schema
   schema: z.object({
+    name: z.string(),
     title: z.string(),
     description: z.string(),
     // Transform string to Date object
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    heroImage: z.string().optional(),
+    updatedDate: z.coerce.date(),
+    author: z.string().default("Joseph Lawler"),
   }),
 });
 

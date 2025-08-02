@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+const allDocs = await getCollection("docs");
+
+// Get headings from all documents
+const tocData = await Promise.all(
+    allDocs.map(async (doc) => {
+        const { headings } = await render(doc);
+        return {
+            title: doc.data.title,
+            slug: doc.data.name,
+            headings: headings,
+        };
+    }),
+);
+---
+
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Table of Contents</h1>
+
+    {
+        tocData.map((doc) => (
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">
+                    <a
+                        href={`/docs/${doc.slug}`}
+                        class="text-blue-600 hover:text-blue-800"
+                    >
+                        {doc.title}
+                    </a>
+                </h2>
+
+                <ul class="space-y-1">
+                    {doc.headings.map((heading) => (
+                        <li class={`ml-${(heading.depth - 1) * 4}`}>
+                            <a
+                                href={`/docs/${doc.slug}#${heading.slug}`}
+                                class="text-gray-600 hover:text-gray-900 text-sm"
+                            >
+                                {heading.text}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))
+    }
+</div>
