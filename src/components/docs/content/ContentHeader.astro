@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+import IconLink from "../../ui/IconLink.astro";
+export interface Props {
+    filePath: string;
+}
+
+const { filePath } = Astro.props;
+---
+
+<div class="pb-5">
+    <div class="flex flex-row h-fit w-full justify-between">
+        <!-- Path -->
+        <div class="flex gap-2 items-center">
+            <!-- Home -->
+            <IconLink
+                iconName="home"
+                link="https://github.com/jobot2397/portfolio"
+                variant="orange"
+                size="md"
+            />
+            <!-- TODO make these clickable and match the formatting -->
+            {
+                filePath.split("/").map((path, index, array) => (
+                    <div key={index}>
+                        <span class="text-white">/</span>
+                        <span class="text-white">{path}</span>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Theme TODO change icon -->
+        <IconLink
+            iconName="swatch"
+            link="https://github.com/jobot2397/portfolio"
+            variant="orange"
+            size="md"
+        />
+    </div>
+</div>

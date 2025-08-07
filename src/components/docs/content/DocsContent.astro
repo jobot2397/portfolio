@@ -1,0 +1,110 @@
+---
+import { Icon } from "astro-icon/components";
+import ContentHeader from "./ContentHeader.astro";
+import Prose from "../../Prose.astro";
+const { post, Content, headings } = Astro.props;
+---
+
+<!-- Content -->
+<div class="flex-1 max-w-3xl mx-auto">
+    <div class="flex flex-col w-full p-5 min-h-screen">
+        <!-- Header -->
+        <ContentHeader filePath={post.id} />
+
+        <!-- Frontmatter -->
+        <div>
+            <!-- Title -->
+            <div class="text-6xl text-zinc-50 font-bold">
+                {post.data.title}
+            </div>
+            <div class="border-dashed border-neutral-700 border-l border-b">
+                <!-- Description -->
+                <div class="text-2xl text-zinc-50 p-5">
+                    {post.data.description}
+                </div>
+
+                <!-- Last Modified Date -->
+                <div
+                    class="flex flex-row w-full text-zinc-50 text-sm items-center"
+                >
+                    <div class="border-dashed border-neutral-700 border-t w-5">
+                    </div>
+                    <span class="flex flex-row gap-2 items-center p-2">
+                        <Icon name="calendar" />
+
+                        Published on
+                        {
+                            new Date(post.data.updatedDate).toLocaleDateString(
+                                "en-US",
+                                {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                },
+                            )
+                        }
+                    </span>
+                    <div
+                        class="border-dashed border-neutral-700 border-t flex-1"
+                    >
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <div
+                            class="relative h-10 w-10 text-lg aspect-square rounded-full bg-black text-zinc-50 font-bold border border-dashed border-neutral-700 cursor-pointer"
+                        >
+                            <span
+                                class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                            >
+                                <Icon name="person" />
+                            </span>
+                        </div>
+                        <span>
+                            {post.data.author}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Table of contents -->
+                <details class="w-full text-zinc-50 text-sm group" open>
+                    <summary
+                        class="flex flex-row w-full items-center cursor-pointer"
+                    >
+                        <div
+                            class="border-dashed border-neutral-700 border-t w-5"
+                        >
+                        </div>
+                        <span class="flex flex-row gap-2 items-center p-2">
+                            <Icon
+                                class="text-orange-500 group-open:hidden"
+                                name="plus"
+                            />
+                            <Icon
+                                class="text-orange-500 hidden group-open:block"
+                                name="minus"
+                            />
+                            Table of Contents
+                        </span>
+                    </summary>
+                    <div class="grid grid-cols-3 pl-7 pb-5">
+                        {
+                            headings.map((heading) => (
+                                <div class="ml-5 p-1 text-orange-500 text-md underline text-md border-r border-dashed border-neutral-700">
+                                    <a href={`#${heading.slug}`}>
+                                        {heading.text}
+                                    </a>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </details>
+            </div>
+
+            <!-- Markdown content -->
+            <div class="flex-1 pt-5">
+                <Prose>
+                    <Content />
+                </Prose>
+            </div>
+        </div>
+    </div>
+</div>

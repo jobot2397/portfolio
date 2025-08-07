@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+export interface Props {
+    iconName: string;
+
+    link: string;
+
+    // Style variants
+    variant?: "orange" | "black";
+    size?: "sm" | "md" | "lg";
+
+    // Custom overrides
+    customClass?: string;
+}
+
+const {
+    iconName,
+    link,
+    variant = "orange",
+    size = "md",
+    customClass = "",
+} = Astro.props;
+
+// Size configurations
+const sizeClasses = {
+    md: "h-10 w-10 text-lg",
+};
+
+// Variant configurations
+const variantClasses = {
+    orange: {
+        base: "bg-black text-orange-500 border-neutral-700",
+        hover: "hover:bg-neutral-800 hover:border-orange-500",
+    },
+};
+
+const baseClasses =
+    "relative aspect-square rounded-full bg-black text-orange-500 font-bold border border-dashed border-neutral-700 cursor-pointer";
+const sizeClass = sizeClasses[size];
+const variantClass = variantClasses[variant];
+const combinedClasses = `${baseClasses} ${sizeClass} ${variantClass.base} ${variantClass.hover} ${customClass}`;
+---
+
+<a class={combinedClasses} href={link}>
+    <span class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+        <Icon name={iconName} />
+    </span>
+</a>

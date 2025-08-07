@@ -1,0 +1,57 @@
+---
+import Search from "./Search.astro";
+import PinnedLink from "./PinnedLink.astro";
+import IconLink from "../../ui/IconLink.astro";
+---
+
+<!-- Desktop sidebar -->
+<div class="hidden md:block flex-shrink-0 w-80 ml-5">
+    <div
+        class="sticky top-5
+        bg-neutral-900
+        my-5 rounded-2xl
+        border-dashed border border-neutral-700
+        h-[calc(100vh-2.5rem)] overflow-y-auto"
+    >
+        <!-- Title -->
+        <div class="w-full h-fit px-5 pt-5 pb-10">
+            <div class="text-3xl font-bold text-zinc-100">Title</div>
+        </div>
+
+        <Search />
+
+        <!-- Links -->
+        <!-- Replace links -->
+        <div
+            class="flex flex-row justify-start px-5 py-3 gap-5 text-orange-500"
+        >
+            <IconLink
+                iconName="home"
+                link="https://github.com/jobot2397/portfolio"
+                variant="orange"
+                size="md"
+            />
+            <IconLink
+                iconName="github"
+                link="https://github.com/jobot2397/portfolio"
+                variant="orange"
+                size="md"
+            />
+            <IconLink
+                iconName="gitlab"
+                link="https://github.com/jobot2397/portfolio"
+                variant="orange"
+                size="md"
+            />
+        </div>
+
+        <PinnedLink
+            title="Blog Posts"
+            link="https://github.com/jobot2397/portfolio"
+        />
+        <PinnedLink
+            title="Tag List"
+            link="https://github.com/jobot2397/portfolio"
+        />
+    </div>
+</div>
