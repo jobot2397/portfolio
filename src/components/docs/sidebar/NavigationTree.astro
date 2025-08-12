@@ -12,7 +12,7 @@ const { fileTree } = Astro.props;
                 <NavigationLink
                     title={value.name}
                     type={value.type}
-                    link={"https://google.com"}
+                    link={value.type === "file" ? `/docs/${value.id}` : "#"}
                     level={1}
                     children={value.children}
                     isLastChild={isLast}
