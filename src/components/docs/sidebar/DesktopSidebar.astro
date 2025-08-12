@@ -1,7 +1,10 @@
 ---
-import Search from "./Search.astro";
-import PinnedLink from "./PinnedLink.astro";
 import IconLink from "../../ui/IconLink.astro";
+import NavigationTree from "./NavigationTree.astro";
+import PinnedLink from "./PinnedLink.astro";
+import Search from "./Search.astro";
+
+const { fileTree } = Astro.props;
 ---
 
 <!-- Desktop sidebar -->
@@ -45,6 +48,7 @@ import IconLink from "../../ui/IconLink.astro";
             />
         </div>
 
+        <!-- Pinned Links -->
         <PinnedLink
             title="Blog Posts"
             link="https://github.com/jobot2397/portfolio"
@@ -53,5 +57,8 @@ import IconLink from "../../ui/IconLink.astro";
             title="Tag List"
             link="https://github.com/jobot2397/portfolio"
         />
+
+        <!-- Navigation Tree -->
+        <NavigationTree fileTree={fileTree} />
     </div>
 </div>
