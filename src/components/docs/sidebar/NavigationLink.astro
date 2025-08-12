@@ -1,0 +1,72 @@
+---
+import NavigationLink from "./NavigationLink.astro";
+
+const { title, type, link, level, children, isLastChild = false } = Astro.props;
+---
+
+<div class="relative">
+    <div class="w-4"></div>
+    {
+        Array.from({ length: level - 1 }, (_, index) => (
+            <div
+                class="absolute border-dashed border-l border-neutral-700"
+                style={{
+                    left: `${(level - index - 1) * 16}px`,
+                    top: "0px",
+                    height: "40px",
+                    width: "2px",
+                }}
+            />
+        ))
+    }
+    <a
+        class="py-2 text-zinc-50 flex items-center hover:bg-neutral-800"
+        href={link}
+    >
+        <div class="" style={{ width: `${(level - 1) * 16}px` }}></div>
+        <div
+            class="border-dashed border-b border-neutral-700"
+            style={{ width: `${16}px` }}
+        >
+        </div>
+        <div
+            class="absolute bg-orange-500 w-2 aspect-square rounded-full z-10"
+            style={{
+                left: `${level * 16 - 4 + 0.5}px`,
+                top: "16px",
+            }}
+        >
+        </div>
+        {
+            type === "directory" && (
+                <div
+                    class="absolute border-dashed border-l border-neutral-700"
+                    style={{
+                        left: `${level * 16}px`,
+                        top: "20px",
+                        height: "20px",
+                        width: "2px",
+                    }}
+                />
+            )
+        }
+        <span class="pl-2">{title}</span>
+    </a>
+    {
+        children !== null &&
+            Object.entries(children).map(([key, value], index, array) => {
+                console.log();
+                const isLast = index === array.length - 1;
+                return (
+                    <NavigationLink
+                        title={value.name}
+                        type={value.type}
+                        link={"https://google.com"}
+                        level={level + 1}
+                        children={value.children}
+                        isLastChild={isLast}
+                    />
+                );
+            })
+    }
+</div>

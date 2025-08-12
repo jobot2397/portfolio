@@ -1,0 +1,23 @@
+---
+import NavigationLink from "./NavigationLink.astro";
+
+const { fileTree } = Astro.props;
+---
+
+<div>
+    {
+        Object.entries(fileTree).map(([key, value], index, array) => {
+            const isLast = index === array.length - 1;
+            return (
+                <NavigationLink
+                    title={value.name}
+                    type={value.type}
+                    link={"https://google.com"}
+                    level={1}
+                    children={value.children}
+                    isLastChild={isLast}
+                />
+            );
+        })
+    }
+</div>
