@@ -5,7 +5,7 @@ import { Icon } from "astro-icon/components";
 import DesktopSidebar from "../../components/docs/sidebar/DesktopSidebar.astro";
 import MobileSidebar from "../../components/docs/sidebar/MobileSidebar.astro";
 import DocsContent from "../../components/docs/content/DocsContent.astro";
-
+import { buildFileTree } from "../../utils/utils.js";
 import { render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -16,9 +16,12 @@ export async function getStaticPaths() {
     }));
 }
 type Props = CollectionEntry<"docs">;
-
 const post = Astro.props;
 const { Content, headings } = await render(post);
+
+// Usage
+const posts = await getCollection("docs");
+const fileTree = buildFileTree(posts);
 ---
 
 <!doctype html>
@@ -33,7 +36,7 @@ const { Content, headings } = await render(post);
     >
         <div class="flex flex-row min-h-screen">
             <!-- Desktop Sidebar -->
-            <DesktopSidebar />
+            <DesktopSidebar fileTree={fileTree} />
 
             <DocsContent Content={Content} headings={headings} post={post} />
 

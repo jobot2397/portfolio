@@ -22,7 +22,7 @@ const { filePath } = Astro.props;
             <!-- TODO make these clickable and match the formatting -->
             {
                 filePath.split("/").map((path, index, array) => (
-                    <div key={index}>
+                    <div>
                         <span class="text-white">/</span>
                         <span class="text-white">{path}</span>
                     </div>
