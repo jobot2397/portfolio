@@ -35,14 +35,16 @@ const variantClasses = {
 };
 
 const baseClasses =
-    "relative aspect-square rounded-full bg-black text-orange-500 font-bold border border-dashed border-neutral-700 cursor-pointer";
+    "relative aspect-square rounded-full bg-black text-orange-500 font-bold border border-dashed border-neutral-700 cursor-pointer overflow-hidden group";
 const sizeClass = sizeClasses[size];
 const variantClass = variantClasses[variant];
-const combinedClasses = `${baseClasses} ${sizeClass} ${variantClass.base} ${variantClass.hover} ${customClass}`;
+const combinedClasses = `${baseClasses} ${sizeClass} ${variantClass.base} ${customClass}`;
 ---
 
 <a class={combinedClasses} href={link}>
-    <span class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+    <div class="absolute inset-0 bg-neutral-800 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
+    <div class="absolute inset-0 border border-dashed border-orange-500 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out delay-75"></div>
+    <span class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10">
         <Icon name={iconName} />
     </span>
 </a>
