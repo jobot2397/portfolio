@@ -20,7 +20,7 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
         ))
     }
     <a
-        class="py-2 text-zinc-50 flex items-center hover:bg-neutral-800"
+        class="py-2 text-zinc-50 flex items-center text-wave-trigger"
         href={link}
     >
         <div class="" style={{ width: `${(level - 1) * 16}px` }}></div>
@@ -50,7 +50,7 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
                 />
             )
         }
-        <span class="pl-2">{title}</span>
+        <span class="ml-4 text-wave" data-text={title}>{title}</span>
     </a>
     {
         children !== null &&
