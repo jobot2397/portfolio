@@ -20,12 +20,13 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
         ))
     }
     <a
-        class="py-2 text-zinc-50 flex items-center text-wave-trigger"
+        class="py-2 text-zinc-50 flex items-center relative overflow-hidden group"
         href={link}
     >
+        <div class="absolute inset-0 bg-neutral-800 w-0 group-hover:w-full transition-all duration-500 ease-out"></div>
         <div class="" style={{ width: `${(level - 1) * 16}px` }}></div>
         <div
-            class="border-dashed border-b border-neutral-700"
+            class="border-dashed border-b border-neutral-700 relative z-10"
             style={{ width: `${16}px` }}
         >
         </div>
@@ -40,7 +41,7 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
         {
             type === "directory" && (
                 <div
-                    class="absolute border-dashed border-l border-neutral-700"
+                    class="absolute border-dashed border-l border-neutral-700 z-10"
                     style={{
                         left: `${level * 16}px`,
                         top: "20px",
@@ -50,7 +51,7 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
                 />
             )
         }
-        <span class="ml-4 text-wave" data-text={title}>{title}</span>
+        <span class="ml-4 relative z-10">{title}</span>
     </a>
     {
         children !== null &&
