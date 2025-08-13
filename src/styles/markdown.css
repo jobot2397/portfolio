@@ -1,0 +1,90 @@
+/* Markdown/Prose Styling */
+
+/* Base prose container */
+.prose {
+    @apply prose-lg max-w-none;
+}
+
+/* Headings */
+.prose h1 {
+    @apply text-4xl font-bold underline mb-6 mt-8 scroll-mt-20;
+    color: var(--color-heading-primary);
+}
+
+.prose h2 {
+    @apply text-3xl font-bold underline mb-4 mt-6 scroll-mt-20;
+    color: var(--color-heading-secondary);
+}
+
+.prose h3 {
+    @apply text-2xl font-semibold mb-3 mt-5 scroll-mt-20;
+    color: var(--color-text-muted);
+}
+
+.prose h4 {
+    @apply text-xl font-semibold mb-2 mt-4 scroll-mt-20;
+    color: var(--color-text-subtle);
+}
+
+/* Text elements */
+.prose p {
+    @apply leading-relaxed mb-4;
+    color: var(--color-text-primary);
+}
+
+.prose ul,
+.prose ol {
+    color: var(--color-text-primary);
+}
+
+.prose li {
+    @apply mb-1;
+    color: var(--color-text-primary);
+}
+
+.prose strong {
+    @apply font-semibold;
+    color: var(--color-text-secondary);
+}
+
+/* Code */
+.prose code {
+    @apply px-2 py-1 rounded;
+    color: var(--color-code-text);
+    background-color: var(--color-code-bg);
+}
+
+.prose pre {
+    @apply border;
+    background-color: var(--color-code-bg);
+    border-color: var(--color-border-primary);
+}
+
+/* Links with animated underline */
+.prose a {
+    color: var(--color-text-accent);
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.prose a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease-out;
+}
+
+.prose a:hover::after {
+    width: 100%;
+}
+
+.prose a:not(:hover)::after {
+    width: 0;
+    transition: width 0.3s ease-out;
+    transform-origin: right;
+}

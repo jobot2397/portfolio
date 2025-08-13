@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 export interface Props {
     iconName: string;
 
-    link: string;
+    link?: string;
 
     // Style variants
     variant?: "orange" | "black";
@@ -29,22 +29,30 @@ const sizeClasses = {
 // Variant configurations
 const variantClasses = {
     orange: {
-        base: "bg-black text-orange-500 border-neutral-700",
-        hover: "hover:bg-neutral-800 hover:border-orange-500",
+        base: "bg-theme-input text-theme-accent border-theme-primary",
+        hover: "hover:bg-theme-secondary hover:border-theme-focus",
     },
 };
 
 const baseClasses =
-    "relative aspect-square rounded-full bg-black text-orange-500 font-bold border border-dashed border-neutral-700 cursor-pointer overflow-hidden group";
+    "relative aspect-square rounded-full bg-theme-input text-theme-accent font-bold border border-dashed border-theme-primary cursor-pointer overflow-hidden group";
 const sizeClass = sizeClasses[size];
 const variantClass = variantClasses[variant];
 const combinedClasses = `${baseClasses} ${sizeClass} ${variantClass.base} ${customClass}`;
 ---
 
 <a class={combinedClasses} href={link}>
-    <div class="absolute inset-0 bg-neutral-800 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
-    <div class="absolute inset-0 border border-dashed border-orange-500 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out delay-75"></div>
-    <span class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10">
+    <div
+        class="absolute inset-0 bg-theme-secondary rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"
+    >
+    </div>
+    <div
+        class="absolute inset-0 border border-dashed border-theme-focus rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out delay-75"
+    >
+    </div>
+    <span
+        class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10"
+    >
         <Icon name={iconName} />
     </span>
 </a>

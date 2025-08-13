@@ -1,0 +1,74 @@
+/* Theme-based utility classes */
+
+/* Background Classes */
+.bg-theme-primary {
+    background-color: var(--color-bg-primary);
+}
+
+.bg-theme-secondary {
+    background-color: var(--color-bg-secondary);
+}
+
+.bg-theme-input {
+    background-color: var(--color-bg-input);
+}
+
+.bg-theme-accent {
+    background-color: var(--color-primary);
+}
+
+/* Text Classes */
+.text-theme-primary {
+    color: var(--color-text-primary);
+}
+
+.text-theme-secondary {
+    color: var(--color-text-secondary);
+}
+
+.text-theme-muted {
+    color: var(--color-text-muted);
+}
+
+.text-theme-subtle {
+    color: var(--color-text-subtle);
+}
+
+.text-theme-accent {
+    color: var(--color-text-accent);
+}
+
+.text-theme-heading-primary {
+    color: var(--color-heading-primary);
+}
+
+.text-theme-heading-secondary {
+    color: var(--color-heading-secondary);
+}
+
+.text-theme-code {
+    color: var(--color-code-text);
+}
+
+/* Border Classes */
+.border-theme-primary {
+    border-color: var(--color-border-primary);
+}
+
+.border-theme-focus {
+    border-color: var(--color-border-focus);
+}
+
+/* Hover Classes */
+.hover\:bg-theme-secondary:hover {
+    background-color: var(--color-bg-secondary);
+}
+
+.hover\:border-theme-focus:hover {
+    border-color: var(--color-border-focus);
+}
+
+/* Focus Classes */
+.focus\:border-theme-focus:focus {
+    border-color: var(--color-border-focus);
+}

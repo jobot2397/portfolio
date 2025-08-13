@@ -1,69 +1,39 @@
 @import "tailwindcss";
+@import "./markdown.css";
+@import "./effects.css";
+@import "./theme-classes.css";
 @plugin '@tailwindcss/typography';
 
 @theme {
-    --color-tech-orange: #ff6600;
-    --color-tech-orange-rgba: 255 102 0;
-    --animation-wave-reveal: wave-reveal 0.8s
-        cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-@keyframes wave-reveal {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@utility text-wave {
-    position: relative;
-    display: inline-block;
-    color: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    /* Base text layer - visible when not hovered */
-    &::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        color: theme(colors.zinc.50);
-        z-index: 1;
-        transition: opacity 0.3s ease;
-    }
-
-    /* Animated orange overlay */
-    &::before {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100%;
-        color: var(--color-tech-orange);
-        overflow: hidden;
-        transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        white-space: nowrap;
-        text-shadow:
-            0 0 10px rgb(var(--color-tech-orange-rgba) / 0.5),
-            0 0 20px rgb(var(--color-tech-orange-rgba) / 0.3),
-            0 0 30px rgb(var(--color-tech-orange-rgba) / 0.2);
-        z-index: 2;
-    }
-}
-
-/* Parent hover trigger */
-@utility text-wave-trigger {
-    &:hover .text-wave::before {
-        width: 100%;
-    }
-
-    &:hover .text-wave::after {
-        opacity: 0;
-    }
+    /* Theme Colors */
+    --color-primary: #ff6600;
+    --color-primary-rgba: 255 102 0;
+    
+    /* Background Colors */
+    --color-bg-primary: theme(colors.neutral.900);
+    --color-bg-secondary: theme(colors.neutral.800);
+    --color-bg-input: theme(colors.black);
+    
+    /* Border Colors */
+    --color-border-primary: theme(colors.neutral.700);
+    --color-border-focus: var(--color-primary);
+    
+    /* Text Colors */
+    --color-text-primary: theme(colors.zinc.50);
+    --color-text-secondary: theme(colors.zinc.100);
+    --color-text-muted: theme(colors.zinc.200);
+    --color-text-subtle: theme(colors.zinc.300);
+    --color-text-accent: var(--color-primary);
+    
+    /* Heading Colors */
+    --color-heading-primary: theme(colors.amber.500);
+    --color-heading-secondary: theme(colors.amber.50);
+    
+    /* Code Colors */
+    --color-code-text: theme(colors.amber.400);
+    --color-code-bg: theme(colors.neutral.800);
+    
+    /* Legacy support - keeping old variable for backward compatibility */
+    --color-tech-orange: var(--color-primary);
+    --color-tech-orange-rgba: var(--color-primary-rgba);
 }

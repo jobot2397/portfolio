@@ -1,5 +1,53 @@
 ---
+import { Icon } from "astro-icon/components";
+import IconLink from "../../ui/IconLink.astro";
+import TableOfContents from "./TableOfContents.astro";
 
+const { post, headings } = Astro.props;
 ---
 
-<div></div>
+<div>
+    <!-- Title -->
+    <div class="text-6xl text-theme-primary font-bold">
+        {post.data.title}
+    </div>
+    <div class="border-dashed border-theme-primary border-l border-b">
+        <!-- Description -->
+        <div class="text-2xl text-theme-primary p-5">
+            {post.data.description}
+        </div>
+
+        <!-- Last Modified Date -->
+        <div
+            class="flex flex-row w-full text-theme-primary text-sm items-center"
+        >
+            <div class="border-dashed border-theme-primary border-t w-5"></div>
+            <span class="flex flex-row gap-2 items-center p-2">
+                <Icon name="calendar" />
+
+                Published on
+                {
+                    new Date(post.data.updatedDate).toLocaleDateString(
+                        "en-US",
+                        {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                        },
+                    )
+                }
+            </span>
+            <div class="border-dashed border-theme-primary border-t flex-1">
+            </div>
+            <div class="flex flex-row items-center gap-2">
+                <IconLink iconName="person" variant="orange" size="md" />
+                <span>
+                    {post.data.author}
+                </span>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <TableOfContents headings={headings} />
+    </div>
+</div>

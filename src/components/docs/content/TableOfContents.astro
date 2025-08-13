@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon/components";
+
+// Show on the side once the main table of contents are no longer present
+const { headings } = Astro.props;
+---
+
+<!-- Table of contents -->
+<details class="w-full text-theme-primary text-sm group" open>
+    <summary class="flex flex-row w-full items-center cursor-pointer">
+        <div class="border-dashed border-theme-primary border-t w-5"></div>
+        <span class="flex flex-row gap-2 items-center p-2">
+            <Icon class="text-theme-accent group-open:hidden" name="plus" />
+            <Icon
+                class="text-theme-accent hidden group-open:block"
+                name="minus"
+            />
+            Table of Contents
+        </span>
+    </summary>
+    <div class="grid grid-cols-3 pl-7 pb-5">
+        {
+            headings.map((heading) => (
+                <div class="ml-5 p-1 text-theme-accent text-md text-md border-r border-dashed border-theme-primary">
+                    <a href={`#${heading.slug}`} class="underline-animate">
+                        {heading.text}
+                    </a>
+                </div>
+            ))
+        }
+    </div>
+</details>

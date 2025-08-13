@@ -9,7 +9,7 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
     {
         Array.from({ length: level - 1 }, (_, index) => (
             <div
-                class="absolute border-dashed border-l border-neutral-700"
+                class="absolute border-dashed border-l border-theme-primary"
                 style={{
                     left: `${(level - index - 1) * 16}px`,
                     top: "0px",
@@ -20,18 +20,18 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
         ))
     }
     <a
-        class="py-2 text-zinc-50 flex items-center relative overflow-hidden group"
+        class="py-2 text-theme-primary flex items-center relative overflow-hidden group"
         href={link}
     >
-        <div class="absolute inset-0 bg-neutral-800 w-0 group-hover:w-full transition-all duration-500 ease-out"></div>
+        <div class="absolute inset-0 bg-theme-secondary w-0 group-hover:w-full transition-all duration-500 ease-out"></div>
         <div class="" style={{ width: `${(level - 1) * 16}px` }}></div>
         <div
-            class="border-dashed border-b border-neutral-700 relative z-10"
+            class="border-dashed border-b border-theme-primary relative z-10"
             style={{ width: `${16}px` }}
         >
         </div>
         <div
-            class="absolute bg-orange-500 w-2 aspect-square rounded-full z-10"
+            class="absolute bg-theme-accent w-2 aspect-square rounded-full z-10"
             style={{
                 left: `${level * 16 - 4 + 0.5}px`,
                 top: "16px",
@@ -41,7 +41,7 @@ const { title, type, link, level, children, isLastChild = false } = Astro.props;
         {
             type === "directory" && (
                 <div
-                    class="absolute border-dashed border-l border-neutral-700 z-10"
+                    class="absolute border-dashed border-l border-theme-primary z-10"
                     style={{
                         left: `${level * 16}px`,
                         top: "20px",
