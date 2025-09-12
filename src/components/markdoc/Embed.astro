@@ -1,0 +1,66 @@
+---
+export interface Props {
+    src: string;
+    type?: "youtube" | "vimeo" | "codepen" | "iframe";
+    title?: string;
+    width?: string;
+    height?: string;
+    aspectRatio?: "16:9" | "4:3" | "1:1";
+}
+
+const {
+    src,
+    type = "iframe",
+    title = "Embedded content",
+    width,
+    height,
+    aspectRatio = "16:9",
+} = Astro.props;
+
+// Extract video IDs and create proper embed URLs
+const getEmbedUrl = (src: string, type: string) => {
+    switch (type) {
+        case "youtube":
+            const youtubeId = src.match(
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
+            )?.[1];
+            return youtubeId
+                ? `https://www.youtube.com/embed/${youtubeId}`
+                : src;
+        case "vimeo":
+            const vimeoId = src.match(/vimeo\.com\/(\d+)/)?.[1];
+            return vimeoId ? `https://player.vimeo.com/video/${vimeoId}` : src;
+        case "codepen":
+            const codepenUrl = src.replace("/pen/", "/embed/");
+            return codepenUrl.includes("/embed/") ? codepenUrl : src;
+        default:
+            return src;
+    }
+};
+
+const embedUrl = getEmbedUrl(src, type);
+
+const aspectRatioClasses = {
+    "16:9": "aspect-video",
+    "4:3": "aspect-[4/3]",
+    "1:1": "aspect-square",
+};
+
+const containerStyle =
+    width && height ? `width: ${width}; height: ${height};` : "";
+---
+
+<div class="my-6">
+    <div
+        class={`w-full ${aspectRatioClasses[aspectRatio]} bg-theme-secondary rounded-lg overflow-hidden border border-theme-primary`}
+        style={containerStyle}
+    >
+        <iframe
+            src={embedUrl}
+            title={title}
+            class="w-full h-full"
+            frameborder="0"
+            allowfullscreen
+            loading="lazy"></iframe>
+    </div>
+</div>

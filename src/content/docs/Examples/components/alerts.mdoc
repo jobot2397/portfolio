@@ -1,0 +1,30 @@
+---
+name: Alerts
+title: Alert Component Examples
+description: Examples showing all Alert component props and variations
+slug: examples/alerts
+updatedDate: 2024-09-12
+author: Joseph Lawler
+---
+
+# Alert Component Examples
+
+## Default (info type)
+{% alert value="This is a default info alert" /%}
+
+## All Types
+
+### Info
+{% alert value="This is an info alert" type="info" /%}
+
+### Warning
+{% alert value="This is a warning alert" type="warning" /%}
+
+### Error
+{% alert value="This is an error alert" type="error" /%}
+
+### Success
+{% alert value="This is a success alert" type="success" /%}
+
+## HTML Content Support
+{% alert value="<strong>Bold text</strong> and <em>italic text</em> with <a href='#'>links</a>" type="info" /%}

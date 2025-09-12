@@ -1,5 +1,53 @@
 ---
+export interface Props {
+    value: string;
+    type?: "info" | "warning" | "error" | "success";
+}
 
+const { value, type = "info" } = Astro.props;
+
+const alertStyles = {
+    info: {
+        container:
+            "border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/20",
+        icon: "text-blue-600 dark:text-blue-400",
+        text: "text-blue-800 dark:text-blue-200",
+    },
+    warning: {
+        container:
+            "border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-900/20",
+        icon: "text-yellow-600 dark:text-yellow-400",
+        text: "text-yellow-800 dark:text-yellow-200",
+    },
+    error: {
+        container:
+            "border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20",
+        icon: "text-red-600 dark:text-red-400",
+        text: "text-red-800 dark:text-red-200",
+    },
+    success: {
+        container:
+            "border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20",
+        icon: "text-green-600 dark:text-green-400",
+        text: "text-green-800 dark:text-green-200",
+    },
+};
+
+const icons = {
+    info: "ℹ️",
+    warning: "⚠️",
+    error: "❌",
+    success: "✅",
+};
+
+const currentStyle = alertStyles[type];
 ---
 
-<div class="bg-red-500">{Astro.props.value}</div>
+<div
+    class={`border rounded-lg p-4 mb-4 flex items-start gap-3 ${currentStyle.container}`}
+>
+    <div class={`flex-shrink-0 text-lg ${currentStyle.icon}`}>
+        {icons[type]}
+    </div>
+    <div class={`flex-1 ${currentStyle.text}`} set:html={value} />
+</div>

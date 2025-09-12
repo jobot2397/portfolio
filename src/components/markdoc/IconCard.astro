@@ -1,5 +1,80 @@
 ---
+export interface Props {
+    value: string;
+}
 
+const { value } = Astro.props;
+
+// Parse the comma-separated value: 'title', 'description', 'icon'
+const parseValue = (val: string) => {
+    // Split by comma and clean up quotes and whitespace
+    const parts = val
+        .split(",")
+        .map((part) => part.trim().replace(/^['"]|['"]$/g, ""));
+    return {
+        title: parts[0] || "",
+        description: parts[1] || "",
+        icon: parts[2] || "",
+    };
+};
+
+const { title, description, icon } = parseValue(value);
+
+// Simple icon mapping - in a real app, you might use an icon library
+const iconMap: Record<string, string> = {
+    pen: "✏️",
+    "person-arms-spread": "🤸",
+    rocket: "🚀",
+    "magnifying-glass": "🔍",
+    list: "📋",
+    "list-dashes": "📝",
+    parachute: "🪂",
+    images: "🖼️",
+    printer: "🖨️",
+    code: "💻",
+    sidebar: "🗂️",
+    "circle-half": "🌗",
+    heart: "❤️",
+    star: "⭐",
+    lightning: "⚡",
+    shield: "🛡️",
+    gear: "⚙️",
+    globe: "🌍",
+    lock: "🔒",
+    key: "🔑",
+    database: "🗄️",
+    server: "🖥️",
+    cloud: "☁️",
+    mobile: "📱",
+    desktop: "🖥️",
+    tablet: "📱",
+    wifi: "📶",
+    signal: "📡",
+    battery: "🔋",
+    plug: "🔌",
+};
+
+const displayIcon = iconMap[icon] || "📄";
 ---
 
-<div>ICON CARD</div>
+<div
+    class="border border-theme-primary rounded-xl p-6 bg-theme-primary hover:bg-theme-secondary transition-colors duration-300 group"
+>
+    <div class="flex items-start gap-4">
+        <div
+            class="flex-shrink-0 text-3xl group-hover:scale-110 transition-transform duration-300"
+        >
+            {displayIcon}
+        </div>
+        <div class="flex-1 min-w-0">
+            <h3
+                class="text-lg font-semibold text-theme-primary mb-2 group-hover:text-theme-accent transition-colors duration-300"
+            >
+                {title}
+            </h3>
+            <p class="text-theme-secondary text-sm leading-relaxed">
+                {description}
+            </p>
+        </div>
+    </div>
+</div>

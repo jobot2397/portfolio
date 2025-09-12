@@ -1,0 +1,54 @@
+---
+name: Accordions
+title: Accordion Component Examples
+description: Examples showing all Accordion component props and variations
+slug: examples/accordions
+updatedDate: 2024-09-12
+author: Joseph Lawler
+---
+
+# Accordion Component Examples
+
+## Basic Usage
+{% accordion title="Basic Accordion" %}
+Simple text content inside the accordion.
+{% /accordion %}
+
+## Different Content Types
+
+### Markdown Content
+{% accordion title="Markdown Content" %}
+This contains **bold text**, *italic text*, and `code`.
+
+- List item 1
+- List item 2
+- List item 3
+{% /accordion %}
+
+### HTML Content
+{% accordion title="HTML Content" %}
+<p>This contains <strong>HTML</strong> content with <a href="#">links</a>.</p>
+<ul>
+<li>HTML list item</li>
+<li>Another item</li>
+</ul>
+{% /accordion %}
+
+### Nested Components
+{% accordion title="Components Inside Accordion" %}
+{% alert value="Alert inside accordion" type="info" /%}
+{% button value="Button inside accordion" /%}
+{% /accordion %}
+
+## Multiple Accordions
+{% accordion title="First Accordion" %}
+Content of the first accordion.
+{% /accordion %}
+
+{% accordion title="Second Accordion" %}
+Content of the second accordion.
+{% /accordion %}
+
+{% accordion title="Third Accordion" %}
+Content of the third accordion.
+{% /accordion %}

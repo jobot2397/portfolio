@@ -1,0 +1,36 @@
+---
+name: Embeds
+title: Embed Component Examples
+description: Examples showing all Embed component props and variations
+slug: examples/embeds
+updatedDate: 2024-09-12
+author: Joseph Lawler
+---
+
+# Embed Component Examples
+
+## Basic iframe
+{% embed src="https://example.com" title="Example Website" /%}
+
+## YouTube Video
+{% embed src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="youtube" title="YouTube Video" /%}
+
+## Vimeo Video
+{% embed src="https://vimeo.com/123456789" type="vimeo" title="Vimeo Video" /%}
+
+## CodePen
+{% embed src="https://codepen.io/user/pen/example" type="codepen" title="CodePen Demo" /%}
+
+## Different Aspect Ratios
+
+### 16:9 (Default)
+{% embed src="https://example.com" aspectRatio="16:9" title="16:9 Aspect Ratio" /%}
+
+### 4:3
+{% embed src="https://example.com" aspectRatio="4:3" title="4:3 Aspect Ratio" /%}
+
+### 1:1 (Square)
+{% embed src="https://example.com" aspectRatio="1:1" title="Square Aspect Ratio" /%}
+
+## Custom Dimensions
+{% embed src="https://example.com" width="800px" height="400px" title="Custom Dimensions" /%}

@@ -1,0 +1,48 @@
+---
+export interface Props {
+    src: string;
+    alt: string;
+    width?: string | number;
+    height?: string | number;
+    caption?: string;
+    rounded?: boolean;
+    border?: boolean;
+}
+
+const {
+    src,
+    alt,
+    width,
+    height,
+    caption,
+    rounded = false,
+    border = false,
+} = Astro.props;
+
+const imageClasses = [
+    "max-w-full",
+    "h-auto",
+    rounded && "rounded-lg",
+    border && "border border-theme-primary",
+]
+    .filter(Boolean)
+    .join(" ");
+---
+
+<figure class="my-6">
+    <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        class={imageClasses}
+        loading="lazy"
+    />
+    {
+        caption && (
+            <figcaption class="text-center text-theme-secondary text-sm mt-2 italic">
+                {caption}
+            </figcaption>
+        )
+    }
+</figure>

@@ -10,7 +10,8 @@ export function buildFileTree(entries) {
         // This is the file
         current[part] = {
           ...entry,
-          name: part,
+          name: entry.data.name,
+          slug: entry.data.slug || entry.id,
           children: null,
           type: "file",
         };
@@ -18,7 +19,7 @@ export function buildFileTree(entries) {
         // This is a directory
         if (!current[part]) {
           current[part] = {
-            name: part,
+            name: part.charAt(0).toUpperCase() + part.slice(1),
             type: "directory",
             children: {},
           };

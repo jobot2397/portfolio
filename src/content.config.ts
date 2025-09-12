@@ -23,6 +23,7 @@ const docs = defineCollection({
     name: z.string(),
     title: z.string(),
     description: z.string(),
+    slug: z.string().optional(),
     // Transform string to Date object
     updatedDate: z.coerce.date(),
     author: z.string().default("Joseph Lawler"),

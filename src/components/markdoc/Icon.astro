@@ -1,0 +1,66 @@
+---
+export interface Props {
+    name: string;
+    size?: "sm" | "md" | "lg" | "xl";
+    color?: "primary" | "secondary" | "accent" | "muted";
+}
+
+const { name, size = "md", color = "primary" } = Astro.props;
+
+const iconMap: Record<string, string> = {
+    "arrow-right": "→",
+    "arrow-left": "←",
+    "arrow-up": "↑",
+    "arrow-down": "↓",
+    check: "✓",
+    cross: "✗",
+    star: "⭐",
+    heart: "❤️",
+    home: "🏠",
+    user: "👤",
+    settings: "⚙️",
+    search: "🔍",
+    menu: "☰",
+    close: "✕",
+    info: "ℹ️",
+    warning: "⚠️",
+    error: "❌",
+    success: "✅",
+    calendar: "📅",
+    clock: "🕐",
+    mail: "📧",
+    phone: "📞",
+    location: "📍",
+    link: "🔗",
+    download: "⬇️",
+    upload: "⬆️",
+    edit: "✏️",
+    delete: "🗑️",
+    copy: "📋",
+    share: "📤",
+};
+
+const sizeClasses = {
+    sm: "text-sm",
+    md: "text-base",
+    lg: "text-xl",
+    xl: "text-3xl",
+};
+
+const colorClasses = {
+    primary: "text-theme-primary",
+    secondary: "text-theme-secondary",
+    accent: "text-theme-accent",
+    muted: "text-theme-muted",
+};
+
+const displayIcon = iconMap[name] || "❓";
+---
+
+<span
+    class={`inline-block ${sizeClasses[size]} ${colorClasses[color]}`}
+    role="img"
+    aria-label={name}
+>
+    {displayIcon}
+</span>

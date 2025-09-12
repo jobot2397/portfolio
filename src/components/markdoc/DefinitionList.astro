@@ -1,0 +1,46 @@
+---
+export interface Props {
+    items: string;
+    variant?: "default" | "compact" | "bordered";
+}
+
+const { items, variant = "default" } = Astro.props;
+
+// Parse items - expecting format: "term1:definition1,term2:definition2"
+const parseItems = (items: string) => {
+    return items
+        .split(",")
+        .map((item) => {
+            const [term, definition] = item
+                .split(":")
+                .map((part) => part.trim());
+            return { term, definition };
+        })
+        .filter((item) => item.term && item.definition);
+};
+
+const definitionItems = parseItems(items);
+
+const variantClasses = {
+    default: "space-y-4",
+    compact: "space-y-2",
+    bordered:
+        "space-y-4 border border-theme-primary rounded-lg p-4 bg-theme-primary",
+};
+---
+
+<dl class={`my-6 ${variantClasses[variant]}`}>
+    {
+        definitionItems.map(({ term, definition }) => (
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-4">
+                <dt class="font-semibold text-theme-primary sm:w-1/3 flex-shrink-0">
+                    {term}
+                </dt>
+                <dd
+                    class="text-theme-secondary sm:w-2/3"
+                    set:html={definition}
+                />
+            </div>
+        ))
+    }
+</dl>
