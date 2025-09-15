@@ -1,13 +1,11 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-
-import tailwindcss from "@tailwindcss/vite";
-
-import sitemap from "@astrojs/sitemap";
-
-import icon from "astro-icon";
 
 import markdoc from "@astrojs/markdoc";
+import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
+import expressiveCode from "astro-expressive-code";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,5 +13,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: "https://example.com",
-  integrations: [sitemap(), icon(), markdoc()],
+  integrations: [expressiveCode(), sitemap(), icon(), markdoc()],
 });

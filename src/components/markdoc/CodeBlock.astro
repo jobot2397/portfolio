@@ -1,0 +1,77 @@
+---
+import { Code } from "astro-expressive-code/components";
+
+export interface Props {
+    type: "code" | "terminal";
+    content: string;
+    language?: string;
+    title?: string;
+    showLineNumbers?: boolean;
+    highlightLines?: string;
+    frame?: "terminal" | "code" | "none";
+    wrap?: boolean;
+    command?: string;
+    output?: string;
+    prompt?: string;
+    showCopy?: boolean;
+    collapse?: string;
+}
+
+const {
+    type = "code",
+    content,
+    language = "text",
+    title,
+    showLineNumbers = false,
+    highlightLines,
+    frame = "code",
+    wrap = false,
+    command,
+    output,
+    prompt = "$",
+    showCopy = true,
+    collapse,
+} = Astro.props;
+
+const isTerminal = type === "terminal";
+
+// Prepare all variables upfront
+let finalContent = content;
+let finalLanguage = language;
+let finalFrame = frame;
+let finalMeta = "";
+
+if (isTerminal && command) {
+    // Terminal: Better separation with double newline and proper copy handling
+    const decodedOutput = output ? output.replace(/\\n/g, "\n") : "";
+    finalContent = decodedOutput
+        ? `${prompt} ${command}\n\n${decodedOutput}`
+        : `${prompt} ${command}`;
+    finalLanguage = "bash";
+    finalFrame = "terminal";
+    // Terminal meta without highlighting since we're not showing output
+    finalMeta = [title && `title="${title}"`, wrap && "wrap"]
+        .filter(Boolean)
+        .join(" ");
+} else {
+    // Regular code block - decode escaped newlines
+    finalContent = content ? content.replace(/\\n/g, "\n") : "";
+    finalMeta = [
+        title && `title="${title}"`,
+        showLineNumbers && "showLineNumbers=true",
+        highlightLines && `{${highlightLines}}`,
+        wrap && "wrap",
+        collapse && `collapse={${collapse}}`,
+    ]
+        .filter(Boolean)
+        .join(" ");
+}
+---
+
+<Code
+    code={finalContent}
+    lang={finalLanguage}
+    meta={finalMeta}
+    frame={finalFrame}
+    class="my-6"
+/>

@@ -2,37 +2,38 @@
 @import "./markdown.css";
 @import "./effects.css";
 @import "./theme-classes.css";
+@import "./expressive-code.css";
 @plugin '@tailwindcss/typography';
 
 @theme {
     /* Theme Colors */
     --color-primary: #ff6600;
     --color-primary-rgba: 255 102 0;
-    
+
     /* Background Colors */
-    --color-bg-primary: theme(colors.neutral.900);
-    --color-bg-secondary: theme(colors.neutral.800);
-    --color-bg-input: theme(colors.black);
-    
+    --color-bg-primary: #171717;
+    --color-bg-secondary: #262626;
+    --color-bg-input: #000000;
+
     /* Border Colors */
-    --color-border-primary: theme(colors.neutral.700);
+    --color-border-primary: #404040;
     --color-border-focus: var(--color-primary);
-    
+
     /* Text Colors */
-    --color-text-primary: theme(colors.zinc.50);
-    --color-text-secondary: theme(colors.zinc.100);
-    --color-text-muted: theme(colors.zinc.200);
-    --color-text-subtle: theme(colors.zinc.300);
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #f4f4f5;
+    --color-text-muted: #e4e4e7;
+    --color-text-subtle: #d4d4d8;
     --color-text-accent: var(--color-primary);
-    
+
     /* Heading Colors */
-    --color-heading-primary: theme(colors.amber.500);
-    --color-heading-secondary: theme(colors.amber.50);
-    
+    --color-heading-primary: #f59e0b;
+    --color-heading-secondary: #fffbeb;
+
     /* Code Colors */
-    --color-code-text: theme(colors.amber.400);
-    --color-code-bg: theme(colors.neutral.800);
-    
+    --color-code-text: #fbbf24;
+    --color-code-bg: #262626;
+
     /* Legacy support - keeping old variable for backward compatibility */
     --color-tech-orange: var(--color-primary);
     --color-tech-orange-rgba: var(--color-primary-rgba);

@@ -1,7 +1,7 @@
 ---
 name: Alerts
 title: Alert Component Examples
-description: Examples showing all Alert component props and variations
+description: Comprehensive examples of the Alert markdoc component showing all types and configurations
 slug: examples/alerts
 updatedDate: 2024-09-12
 author: Joseph Lawler
@@ -9,22 +9,78 @@ author: Joseph Lawler
 
 # Alert Component Examples
 
-## Default (info type)
-{% alert value="This is a default info alert" /%}
+The Alert component is used to display important information to users with different levels of urgency and context.
 
-## All Types
+## Basic Usage
 
-### Info
-{% alert value="This is an info alert" type="info" /%}
+The simplest form of an alert with default styling (info type):
 
-### Warning
-{% alert value="This is a warning alert" type="warning" /%}
+{% alert value="This is a basic alert with default info styling." /%}
 
-### Error
-{% alert value="This is an error alert" type="error" /%}
+## Alert Types
 
-### Success
-{% alert value="This is a success alert" type="success" /%}
+### Info Alerts
+Used for general information and neutral messages:
+
+{% alert value="This is an informational alert. It provides helpful context or additional details." type="info" /%}
+
+{% alert value="<strong>Pro tip:</strong> You can use HTML in alert messages for <em>enhanced formatting</em>." type="info" /%}
+
+### Warning Alerts
+Used to draw attention to potential issues or important considerations:
+
+{% alert value="Warning: This action may have unintended consequences. Please review before proceeding." type="warning" /%}
+
+{% alert value="<strong>Maintenance Notice:</strong> The system will be undergoing scheduled maintenance tonight from 11 PM to 2 AM EST." type="warning" /%}
+
+### Error Alerts
+Used to communicate errors, failures, or critical issues:
+
+{% alert value="Error: Failed to save changes. Please check your connection and try again." type="error" /%}
+
+{% alert value="<strong>Access Denied:</strong> You don't have permission to perform this action. Contact your administrator if you believe this is an error." type="error" /%}
+
+### Success Alerts
+Used to confirm successful actions or positive outcomes:
+
+{% alert value="Success! Your profile has been updated successfully." type="success" /%}
+
+{% alert value="<strong>Deployment Complete:</strong> Your application has been successfully deployed to production." type="success" /%}
 
 ## HTML Content Support
-{% alert value="<strong>Bold text</strong> and <em>italic text</em> with <a href='#'>links</a>" type="info" /%}
+
+Alerts support rich HTML content for enhanced formatting:
+
+{% alert value="<h4>Complex Alert Content</h4><p>This alert contains multiple elements:</p><ul><li>HTML headings and paragraphs</li><li>Lists and formatting</li><li><a href='#'>Links</a> and <code>code snippets</code></li></ul><p><strong>Note:</strong> Use HTML responsibly for better accessibility.</p>" type="info" /%}
+
+## Long Content Examples
+
+Alerts can handle longer content gracefully:
+
+{% alert value="This is a much longer alert message that demonstrates how the component handles extended content. It includes multiple sentences and provides detailed information that might span several lines. The component maintains proper spacing and readability even with substantial amounts of text. This ensures that important messages are clearly communicated regardless of their length." type="warning" /%}
+
+## Usage in Documentation
+
+Alerts are particularly useful in documentation for:
+
+{% alert value="<strong>Installation Requirements:</strong> Before proceeding with the installation, ensure you have Node.js version 16 or higher installed on your system." type="warning" /%}
+
+{% alert value="<strong>API Changes:</strong> As of version 2.0, the <code>getUserData()</code> function has been deprecated. Use <code>fetchUserProfile()</code> instead." type="error" /%}
+
+{% alert value="<strong>Feature Available:</strong> The new dark mode theme is now available in the settings panel!" type="success" /%}
+
+## Accessibility Features
+
+All alerts include:
+- Appropriate color contrast for readability
+- Visual icons to reinforce the alert type
+- Semantic structure for screen readers
+- Dark mode support
+
+## Best Practices
+
+{% alert value="<strong>Keep it concise:</strong> While alerts support long content, shorter messages are generally more effective at capturing user attention." type="info" /%}
+
+{% alert value="<strong>Choose the right type:</strong> Use the appropriate alert type to match the message urgency and context." type="info" /%}
+
+{% alert value="<strong>Avoid overuse:</strong> Too many alerts can desensitize users and reduce their effectiveness." type="warning" /%}

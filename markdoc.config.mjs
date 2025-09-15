@@ -1,4 +1,4 @@
-import { defineMarkdocConfig, nodes, component } from "@astrojs/markdoc/config";
+import { component, defineMarkdocConfig, nodes } from "@astrojs/markdoc/config";
 
 export default defineMarkdocConfig({
   tags: {
@@ -69,14 +69,22 @@ export default defineMarkdocConfig({
         variant: { type: String, default: "default" },
       },
     },
-    code: {
-      render: component("./src/components/markdoc/Code.astro"),
+    codeBlock: {
+      render: component("./src/components/markdoc/CodeBlock.astro"),
       attributes: {
-        code: { type: String },
+        type: { type: String, default: "code" },
+        content: { type: String },
         language: { type: String, default: "text" },
         title: { type: String },
         showLineNumbers: { type: Boolean, default: false },
         highlightLines: { type: String },
+        frame: { type: String, default: "code" },
+        wrap: { type: Boolean, default: false },
+        command: { type: String },
+        output: { type: String },
+        prompt: { type: String, default: "$" },
+        showCopy: { type: Boolean, default: true },
+        collapse: { type: String },
       },
     },
   },
