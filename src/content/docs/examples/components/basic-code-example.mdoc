@@ -1,0 +1,118 @@
+---
+name: Basic Code Example
+title: Direct Code Blocks in Markdoc
+description: Example document using native markdown code blocks without custom components
+slug: examples/basic-code
+updatedDate: 2025-09-15
+author: Joseph Lawler
+---
+
+# Direct Code Blocks in Markdoc
+
+This document demonstrates using native markdown code syntax directly in markdoc without custom components.
+
+## JavaScript Example
+
+```javascript
+function greetUser(name) {
+  return `Hello, ${name}!`;
+}
+
+const message = greetUser('World');
+console.log(message);
+```
+
+## React Component
+
+```tsx
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export default function UserProfile({ user }: { user: User }) {
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+    </div>
+  );
+}
+```
+
+## CSS Styling
+
+```css
+.button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark);
+}
+```
+
+## Terminal Commands
+
+```bash
+# Install dependencies
+npm install astro @astrojs/markdoc
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Python Example
+
+```python
+def calculate_fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return calculate_fibonacci(n-1) + calculate_fibonacci(n-2)
+
+# Example usage
+result = calculate_fibonacci(10)
+print(f"Fibonacci of 10 is: {result}")
+```
+
+## JSON Configuration
+
+```json
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.0.0",
+    "@astrojs/markdoc": "^0.8.0"
+  }
+}
+```
+
+## Inline Code
+
+You can also use `inline code` within paragraphs using backticks. This is useful for referencing variables like `userId` or functions like `getUserData()`.
+
+## Multi-line Code Block
+
+```
+This is a plain text code block
+without syntax highlighting.
+It's useful for configuration files
+or when you don't want highlighting.
+```
