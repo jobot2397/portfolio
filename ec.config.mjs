@@ -11,7 +11,6 @@ export default defineEcConfig({
     wrap: false,
   },
   styleOverrides: {
-    codeSelectionBackground: "#000000",
     borderRadius: "0.5rem",
     borderWidth: "1px",
     borderColor: "var(--color-border-primary)",
